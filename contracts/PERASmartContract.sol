@@ -741,7 +741,8 @@ library SafeMath {
     function nMixAddrandSpBlock(address _addr, uint256 bnum)  public view returns(string memory) {
          return append(uintToString(nAddrHash(_addr)),uintToString(bnum));
     }
-
+    
+    //https://stackoverflow.com/a/47137572/4853288
     function uintToString(uint256 v) internal pure returns(string memory str) {
         uint maxlength = 100;
         bytes memory reversed = new bytes(maxlength);
