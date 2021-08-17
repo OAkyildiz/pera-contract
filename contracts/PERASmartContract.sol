@@ -97,7 +97,10 @@ library SafeMath {
     uint256 public genesisBlock = block.number; // Block number of the contract creation
     uint256 public PERASupply = 44950800 * 10 ** uint256(decimals); // Initial PERA supply
     uint256 public totalSupply;
-
+    
+    string public tokenName = "PERA"; //default names. Default values for functions are a  planned feature in Solidity.
+    string public tokenSymbol = "PERA";
+    
     // Initial rate for holder reward distribution coefficient (transferRate), used for rebasing holders' balances
     uint256 private constant transferRateInitial = ~uint240(0);
     uint256 public transferRate = (transferRateInitial - (transferRateInitial % PERASupply))/PERASupply;
@@ -161,8 +164,7 @@ library SafeMath {
 
     ) public {
         initialSupply = PERASupply.mul(transferRate);
-        tokenName = "PERA";
-        tokenSymbol = "PERA";
+       
         manager = msg.sender;
         userbalanceOf[msg.sender] = initialSupply;
         totalSupply =  PERASupply;
@@ -198,7 +200,7 @@ library SafeMath {
             return true;
         }
     }
-
+     // TODO: 
     // Function can only be used by the contract owner
     // Used for excluding an address as a holder
     // Excluded addresses do not receive holder rewards (0.75% of each on-chain PERA transaction)
